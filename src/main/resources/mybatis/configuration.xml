@@ -5,6 +5,8 @@
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="mybatis/mappers/user.xml" /><!-- 폰북 관련된건 여기에 쓸것 mybatis밑에 mappers밑에 phonebook.xml에-->
+		<mapper resource="mybatis/mappers/user.xml" />
+		<mapper resource="mybatis/mappers/guestbook.xml"></mapper>
+		<mapper resource="mybatis/mappers/board.xml"></mapper>
 	</mappers>
 </configuration> 

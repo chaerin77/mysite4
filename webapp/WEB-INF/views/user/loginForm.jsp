@@ -13,7 +13,7 @@
 <body>
 	<div id="wrap">
 
-		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>	
+		<c:import url="/WEB-INF/views/include/header.jsp"></c:import><!-- 뷰리졸브 상관없이 주소 잘써야함 -->	
 
 		<div id="container" class="clearfix">
 			<div id="aside">
