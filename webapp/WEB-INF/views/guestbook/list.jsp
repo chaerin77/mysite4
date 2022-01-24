@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -41,7 +41,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="/mysite4/guest/addList" method="get">
+					<form action="${pageContext.request.contextPath}/guest/addList" method="get">
 						<table id="guestAdd">
 							<colgroup>
 								<col style="width: 70px;">
@@ -81,7 +81,7 @@
 							<td>${guestList.no}</td>
 							<td>${guestList.name}</td>
 							<td>${guestList.regDate}</td>
-							<td><a href="/mysite4/guest/deleteForm?no=${guestList.no}">[삭제]</a></td>
+							<td><a href="${pageContext.request.contextPath}/guest/deleteForm?no=${guestList.no}">[삭제]</a></td>
 						</tr>
 						<tr>
 							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>

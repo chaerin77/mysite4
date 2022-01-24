@@ -19,17 +19,19 @@ public class BoardDao {
 	public List<BoardVo> getList(){
 		
 		List<BoardVo> bvo = sqlSession.selectList("board.getList");//mybatis.mappers - board.xml - getList
-		
 		return bvo; 
 	}
 	
 	//글쓰기
+	public void insert(BoardVo boardVo) {
+		
+		sqlSession.insert("board.insert", boardVo);
+	}
 	
 	//읽기- 정보 가져오기
 	public BoardVo getPerson(int no) {
 		
 		BoardVo gvo = sqlSession.selectOne("board.getPerson", no);
-		
 		return gvo;
 	}
 	
@@ -37,15 +39,19 @@ public class BoardDao {
 	public void uphit(int no) {
 		
 		sqlSession.update("board.uphit", no);
-		
 	}
 	
 	//삭제하기
-	public void deletePerson(int no) {
+	public void delete(int no) {
 		
-		sqlSession.delete("board.deletePerson", no);
+		sqlSession.delete("board.delete", no);
 	}
 	
 	
 	//수정하기
+	public void update(BoardVo boardVo) {
+		
+		sqlSession.update("board.update", boardVo);
+	}
+	
 }

@@ -18,9 +18,34 @@ public class BoardVo {
 	}
 	
 	
-	
-	
-	
+	public BoardVo(int no, String title, String content) {//modify 할때 필요한
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+	}
+
+
+	public BoardVo(String title, String content, int hit, int user_no) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.hit = hit;
+		this.user_no = user_no;
+	}
+
+
+	public BoardVo(int no, String title, String content, String name, int hit, String reg_date) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.name = name;
+		this.hit = hit;
+		this.reg_date = reg_date;
+	}
+
+
 	public BoardVo(int no, String title, String content, String name, int hit, String reg_date, int user_no) {
 		super();
 		this.no = no;

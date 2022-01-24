@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -56,9 +56,9 @@
 								<textarea id="txt-content" name="content"></textarea>
 							</div>
 							
-							<a id="btn_cancel" href="/mysite4/board/list">취소</a>
+							<a id="btn_cancel" href="${pageContext.request.contextPath}/board/list">취소</a>
 							<button id="btn_add" type="submit" >등록</button>
-							
+							<input type=hidden name="user_no" value="${authUser.no}"><!-- 정보넣으려면 필요 -->
 						</form>
 						<!-- //form -->
 					</div>

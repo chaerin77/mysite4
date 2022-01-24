@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -66,11 +66,13 @@
 								<tbody>
 									<tr>
 										<td>${blist.no}</td>
-										<td class="text-left"><a href="/mysite4/board/read?no=${blist.no}">${blist.content}</a></td>
+										<td class="text-left"><a href="${pageContext.request.contextPath}/board/read?no=${blist.no}">${blist.title}</a></td>
 										<td>${blist.name}</td>
 										<td>${blist.hit}</td>
 										<td>${blist.reg_date}</td>
-										<td><a href="/mysite4/board/delete?no=${blist.no}">[삭제]</a></td>
+										<c:if test="${blist.user_no == authUser.no}">
+											<td><a href="${pageContext.request.contextPath}/board/delete?no=${blist.no}">[삭제]</a></td>
+										</c:if>
 									</tr>
 								</tbody>
 							</c:forEach>	
@@ -94,8 +96,9 @@
 							
 							<div class="clear"></div>
 						</div>
-						<a id="btn_write" href="/mysite4/board/writeForm">글쓰기</a>
-					
+						<c:if test="${!empty authUser}">
+						<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm">글쓰기</a>
+						</c:if>
 					</div>
 					<!-- //list -->
 				</div>

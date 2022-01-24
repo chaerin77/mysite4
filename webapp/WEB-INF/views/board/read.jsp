@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -44,7 +44,7 @@
 	
 				<div id="board">
 					<div id="read">
-						<form action="#" method="get">
+						<form action="${pageContext.request.contextPath}/board/modifyForm" method="get">
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
@@ -76,9 +76,11 @@
 								</span>
 							</div>
 							
-							<a id="btn_modify" href="/mysite4/board/modifyForm?no=${bVo.no}">수정</a>
-							<a id="btn_modify" href="/mysite4/board/list">목록</a>
-							
+							<!-- 세션에 있는 no = bVo.user_no와 같으면 수정이 보임(자기만 자기 글 수정가능) -->
+							<c:if test="${authUser.no == bVo.user_no}">
+								<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyForm?no=${bVo.no}">수정</a>
+							</c:if>	
+							<a id="btn_modify" href="${pageContext.request.contextPath}/board/list">목록</a>
 						</form>
 						<!-- //form -->
 					</div>

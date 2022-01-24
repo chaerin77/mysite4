@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.javaex.dao.GuestbookDao;
+import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVo;
 
 @Controller
@@ -18,7 +18,7 @@ import com.javaex.vo.GuestbookVo;
 public class GuestbookController {
 	
 	@Autowired
-	private GuestbookDao guestbookDao;
+	private GuestbookService guestbookService;
 	
 	//리스트 가져오기
 	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
@@ -26,8 +26,8 @@ public class GuestbookController {
 		System.out.println("GuestbookController.list");
 		//db에서 목록 갖고오는거
 		
-		List<GuestbookVo> guestList = guestbookDao.getList();
-		
+		//List<GuestbookVo> guestList = guestbookDao.getList();
+		List<GuestbookVo> guestList = guestbookService.getList();
 		model.addAttribute("gList", guestList);
 		
 		//포워드
@@ -38,8 +38,8 @@ public class GuestbookController {
 	@RequestMapping(value="/addList", method= {RequestMethod.GET, RequestMethod.POST})
 	public String addList(@ModelAttribute GuestbookVo gvo) {
 		
-		guestbookDao.addList(gvo);
-		
+		//guestbookDao.addList(gvo);
+		guestbookService.addList(gvo);
 		return "redirect:/guest/list";
 	}
 	
@@ -55,8 +55,8 @@ public class GuestbookController {
 	public String delete(@RequestParam("no") int no,
 						 @RequestParam("password") String passowrd) { //deleteForm.jsp의 no,password값 갖고와서 guestbook.xml의 쿼리문에 넣어주기
 		
-		guestbookDao.deleteList(no, passowrd);
-		
+		//guestbookDao.deleteList(no, passowrd);
+		guestbookService.deleteList(no, passowrd);
 		return "redirect:/guest/list";
 	}
 	
