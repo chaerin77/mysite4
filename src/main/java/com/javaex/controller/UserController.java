@@ -66,8 +66,21 @@ public class UserController {
 
 	
 	//회원가입 폼
+	@RequestMapping(value="/user/joinForm", method= {RequestMethod.GET, RequestMethod.POST})
+	public String joinForm() {
+		
+		return "user/joinForm";
+	}
+	
 	
 	//회원가입
+	@RequestMapping(value="/user/join", method= {RequestMethod.GET, RequestMethod.POST})
+	public String join() {
+		
+		System.out.println("join");
+		return "user/joinOk";
+	}
+	
 	
 	//회원정보 수정폼
 	
