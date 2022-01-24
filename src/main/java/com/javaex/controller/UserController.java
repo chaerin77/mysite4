@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -75,15 +76,35 @@ public class UserController {
 	
 	//회원가입
 	@RequestMapping(value="/user/join", method= {RequestMethod.GET, RequestMethod.POST})
-	public String join() {
+	public String join(@ModelAttribute UserVo userVo) {
 		
-		System.out.println("join");
+		userService.join(userVo);
+		//System.out.println(userVo);
+		//System.out.println("join");
+		
 		return "user/joinOk";
 	}
 	
 	
 	//회원정보 수정폼
+	@RequestMapping(value="/user/modifyForm", method= {RequestMethod.GET, RequestMethod.POST})
+	public String modifyForm(Model model, HttpSession session) {
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		UserVo userVo = userService.modifyForm(authUser);//id만 갖고오면 나중에 update할때 쓸정보가없으려나
+		model.addAttribute("uvo", userVo);
+		return "user/modifyForm";
+	}
+	
 	
 	//회원정보 수정
+	@RequestMapping(value="/user/modify", method= {RequestMethod.GET, RequestMethod.POST})
+	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println(userVo);
+		userService.modify(userVo);
+		session.setAttribute("authUser", userVo);
+		
+		return "redirect:/";
+	}
 
 }

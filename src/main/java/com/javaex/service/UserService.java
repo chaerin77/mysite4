@@ -14,7 +14,26 @@ public class UserService {
 	
 	public UserVo login(UserVo userVo) {
 		
-		UserVo authUser = userDao.getUser(userVo);
+		UserVo authUser = userDao.selectUser(userVo);
 		return authUser; 
+	}
+
+	//회원가입
+	public void join(UserVo userVo) {
+		
+		userDao.join(userVo);
+	}
+	
+	//수정 폼. 사람 정보 가져오기
+	public UserVo modifyForm(UserVo userVo) {
+		
+		UserVo uVo = userDao.getUser(userVo);
+		return uVo;
+	}
+	
+	//수정하기
+	public void modify(UserVo userVo) {
+		
+		userDao.update(userVo);
 	}
 }
