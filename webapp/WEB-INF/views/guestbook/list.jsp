@@ -84,7 +84,7 @@
 							<td><a href="${pageContext.request.contextPath}/guest/deleteForm?no=${guestList.no}">[삭제]</a></td>
 						</tr>
 						<tr>
-							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
+							<td colspan=4 class="text-left">${guestList.content}</td>
 						</tr>
 					</table>
 					</c:forEach>
