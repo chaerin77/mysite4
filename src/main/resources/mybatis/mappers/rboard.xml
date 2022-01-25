@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rboard">
+
+	<select id="selectList" resultType="com.javaex.vo.RboardVo">
+		<![CDATA[
+			select rb.no,
+       			   rb.user_no,
+       			   us.name,
+       			   rb.title,
+       			   rb.group_no,
+       			   rb.order_no,
+       			   rb.depth
+			from rboard rb, users us
+			where rb.user_no = us.no		
+		]]>
+	</select>
+	
+	<insert id="addList" parameterType="com.javaex.vo.RboardVo">
+		<![CDATA[
+			insert into rboard
+			values (seq_rboard_no.nextval, #{user_no}, #{name}, #{title}, #{group_no}, #{order_no}, #{depth})		
+		]]>
+	</insert>
+	
+</mapper>
