@@ -20,7 +20,7 @@ public class GuestbookController {
 	@Autowired
 	private GuestbookService guestbookService;
 	
-	//리스트 가져오기
+	//리스트 가져오기 입력폼+리스트
 	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
 	public String guestList(Model model){
 		System.out.println("GuestbookController.list");

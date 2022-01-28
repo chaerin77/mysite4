@@ -14,8 +14,9 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<context:annotation-config />
 	<!-- com.javaex.controller 패키지 밑에 있는 클래스 중에 @Controller를 달고 있는 클래스의 객체를 
 		생성 하겠다. (new 하겠다) -->
-	<context:component-scan
-		base-package="com.javaex.controller" />
+	<context:component-scan base-package="com.javaex.controller" /><!-- javaex.api.controller 가 추가되어야 오늘 만든거 돌아가서 추가해줌 -->
+	<context:component-scan base-package="com.javaex.api.controller" />
+
 
 	<!-- 기본 뷰 리졸버 -->
 	<bean id="viewResolver"
@@ -30,5 +31,17 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<mvc:default-servlet-handler />
 	<mvc:annotation-driven />
 	
+	<!-- 220128 추가 jason관련 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
 </beans>

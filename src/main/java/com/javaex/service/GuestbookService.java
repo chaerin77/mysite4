@@ -26,6 +26,23 @@ public class GuestbookService {
 		guestbookDao.addList(guestbookVo);
 	}
 	
+	//220128 방명록 글 저장-->저장글 리턴
+	public GuestbookVo addGuestResultVo(GuestbookVo guestbookVo) {
+		System.out.println("guestbookService/addGuestResultVo");
+		
+		//저장하기
+		int count = guestbookDao.insertSelectKey(guestbookVo);
+		
+		//저장한 내용 가져오기
+		int no = guestbookVo.getNo();
+		return guestbookDao.selectGuest(no); //마이바티스에서 만들어준
+		
+		/*위랑 같은것
+		GuestbookVo gVo = guestbookDao.selectGuest(no);
+		return gVo;*/
+	}
+	
+	
 	public void deleteList(int no, String password) {
 		
 		guestbookDao.deleteList(no, password);

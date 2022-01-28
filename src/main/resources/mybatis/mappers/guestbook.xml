@@ -24,6 +24,31 @@
 		]]>
 	</insert>
 	
+	<!-- 방명록 글1개 가져오기 -->
+   <select id="selectByNo" parameterType="int" resultType="com.javaex.vo.GuestbookVo">
+      <![CDATA[
+         select no, name, password, content, reg_date regDate
+         from guestbook
+         where no = #{no}
+      ]]>
+   </select>
+	
+	
+	
+	<!-- 20220128 방명록 글 저장 selectKey -->
+	<insert id="insertSelectKey" parameterType="com.javaex.vo.GuestbookVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE"><!-- 요기복붙 -->
+			select seq_guestbook_no.nextval from dual <!-- dual 가상의 테이블 -->
+		</selectKey><!-- 요기 -->
+		
+		<!-- seq_no.nextval -> #{no} -->
+		<![CDATA[
+			insert into guestbook
+			values(#{no},#{name},#{password},#{content},sysdate)
+		]]>
+	
+	</insert>
+	
 	<!-- 리스트 삭제하기 -->
 	<delete id="deletelist" parameterType="com.javaex.vo.GuestbookVo">
 		<![CDATA[
