@@ -123,12 +123,13 @@
 	/*로딩되기전에 요청*/
 	$(document).ready(function(){ //문서가 준비되면 ()안의 function의 코드(기능) 요청
 		
-		/*로딩되기 전에 리스트 그리기*/
-		fetchList();
-		//console.log("리스트 요청"); //이 시점에 리스트 요청해야함
+			/*로딩되기 전에 리스트 그리기*/
+			fetchList();
+			//console.log("리스트 요청"); //이 시점에 리스트 요청해야함
 	});	
-		//저장버튼이 클릭될때(이벤트)
-		$("#btnSubmit").on("click",function(){
+	
+	//저장버튼이 클릭될때(이벤트)
+	$("#btnSubmit").on("click",function(){
 			console.log("클릭");
 			
 			//폼에 데이터를 모아야함
@@ -139,9 +140,9 @@
 			
 			//위의 세개 데이터 객체로 만들어서 묶기
 			var guestbookVo = {
-				name: name, // 필드명: 입력한값(value에서 갖고온값)	
-				password: password,
-				content: content
+					name: name, // 필드명: 입력한값(value에서 갖고온값)	
+					password: password,
+					content: content
 			};
 			
 			//확인
@@ -151,58 +152,60 @@
 			//요청하기
 			$.ajax({
 				
-				url : "${pageContext.request.contextPath }/api/guestbook/write",
-				type : "post",
-				//contentType : "application/json",
-				data : guestbookVo,    //데이터 넣기{name: name, password: password, content: content}
-				
-				//dataType : "json",
-				success : function(guestbookVo){
-					/*성공시 처리해야될 코드 작성*/
-					console.log(guestbookVo);
-					render(guestbookVo,"up");//왜 여기는 큰따옴표 넣는지?
-							
-					//등록 누른후에 내가 입력한 정보가 창에 그대로 남아있어서 그거 지울것
-					$("#input-uname").val("");
-					$("#input-pass").val("");
-					$("[name='content']").val("");
+					url : "${pageContext.request.contextPath }/api/guestbook/write",
+					type : "post",
+					//contentType : "application/json",
+					data : guestbookVo,    //데이터 넣기{name: name, password: password, content: content}
 					
-				},
-				error : function(XHR, status, error) {
-					console.error(status + " : " + error);
-				}
+					//dataType : "json",
+					success : function(guestbookVo){
+						
+							/*성공시 처리해야될 코드 작성*/
+							console.log(guestbookVo);
+							render(guestbookVo,"up");//왜 여기는 큰따옴표 넣는지? --메소드를 그렇게 만들었음
+									
+							//등록 누른후에 내가 입력한 정보가 창에 그대로 남아있어서 그거 지울것
+							$("#input-uname").val("");
+							$("#input-pass").val("");
+							$("[name='content']").val("");
+						
+					},
+					error : function(XHR, status, error) {
+							console.error(status + " : " + error);
+					}
 			});
 			
-		}); //괄호 잘 맞추기
+	}); //괄호 잘 맞추기
 		
 	
 	//리스트 출력
 	function fetchList(){ //이런 기능 가진 메소드 만들것
 		
-		$.ajax({ // { 객체  키:값 자바스크립트 문법 }
-			//요청
-			url : "${pageContext.request.contextPath }/api/guestbook/addList", //요청할 위치 쓰는곳
-			type : "post", //요청방식 get/post
-			//contentType : "application/json",
-			//data : {name: ”홍길동"},
+			$.ajax({ // { 객체  키:값 자바스크립트 문법 }
 				
-			//응답
-			dataType : "json",
-			success : function(guestbookList){//자바스크립트 ()안은 내가 정한이름 guestbookList아니어도 결과는 나오지만 같은이름으로 짓는게 안헷갈릴듯
-				/*성공시 처리해야될 코드 작성*/
-				console.log(guestbookList);
-			
-				//데이터 섞어서 그리기 메소드--그리기(guestbookList);  for문 잘쓰기
-				for(var i=0; i<guestbookList.length; i++){
-					render(guestbookList[i],"down"); //방명록리스트 그리기시키는애 --**
-				}
-			
-			
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
+					//요청
+					url : "${pageContext.request.contextPath }/api/guestbook/addList", //요청할 위치 쓰는곳
+					type : "post", //요청방식 get/post
+					//contentType : "application/json",
+					//data : {name: ”홍길동"},
+						
+					//응답
+					dataType : "json",
+					success : function(guestbookList){//자바스크립트 ()안은 내가 정한이름 guestbookList아니어도 결과는 나오지만 같은이름으로 짓는게 안헷갈릴듯
+						/*성공시 처리해야될 코드 작성*/
+						console.log(guestbookList);
+					
+						//데이터 섞어서 그리기 메소드--그리기(guestbookList);  for문 잘쓰기
+						for(var i=0; i<guestbookList.length; i++){
+							render(guestbookList[i],"down"); //방명록리스트 그리기시키는애 --**
+						}
+					
+					
+					},
+					error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}
+			});
 	}
 
 

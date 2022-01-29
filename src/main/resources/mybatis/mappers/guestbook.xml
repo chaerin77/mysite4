@@ -27,9 +27,9 @@
 	<!-- 방명록 글1개 가져오기 -->
    <select id="selectByNo" parameterType="int" resultType="com.javaex.vo.GuestbookVo">
       <![CDATA[
-         select no, name, password, content, reg_date regDate
-         from guestbook
-         where no = #{no}
+	         select no, name, password, content, reg_date regDate
+	         from guestbook
+	         where no = #{no}
       ]]>
    </select>
 	

@@ -44,7 +44,7 @@ public class GuestbookDao {
 		
 	
 		System.out.println(guestbookVo);
-		sqlSession.insert("guestbook.insertSelectKey", guestbookVo);
+		//sqlSession.insert("guestbook.insertSelectKey", guestbookVo);
 		System.out.println(guestbookVo);
 		
 		//dao 는 한 쿼리만 갖고있어야하는데 이렇게 얘도 쓰면 섞어서 엉망으로쓰는거임
