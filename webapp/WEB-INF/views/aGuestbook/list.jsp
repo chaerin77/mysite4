@@ -194,6 +194,7 @@
 					success : function(guestbookList){//자바스크립트 ()안은 내가 정한이름 guestbookList아니어도 결과는 나오지만 같은이름으로 짓는게 안헷갈릴듯
 						/*성공시 처리해야될 코드 작성*/
 						console.log(guestbookList);
+						//console.log(guestbookList[0].name);
 					
 						//데이터 섞어서 그리기 메소드--그리기(guestbookList);  for문 잘쓰기
 						for(var i=0; i<guestbookList.length; i++){
@@ -221,7 +222,7 @@
 		str += '		<col style="width: 10%;">';
 		str += '	</colgroup>';
 		str += '	<tr>';
-		str += '		<td>'+guestbookVo.no+'</td>'; //자바스크립트의 변수라서 $()못씀
+		str += '		<td>'+guestbookVo.no+'</td>'; //자바스크립트의 변수라서 ${}못씀
 		str += '		<td>'+guestbookVo.name+'</td>'; //문자열로 표현하는거니까 +써줬음
 		str += '		<td>'+guestbookVo.regDate+'</td>';
 		str += '		<td><a href="${pageContext.request.contextPath}/guest/deleteForm?no='+guestbookVo.no+'">[삭제]</a></td>';
