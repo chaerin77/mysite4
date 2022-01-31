@@ -42,4 +42,31 @@ public class UserDao {
 		sqlSession.update("user.update", userVo);
 	}
 	
+	//220131 아이디 중복체크--실패
+	/*public String selectId(String id) {
+		
+		//String uid = sqlSession.selectOne("user.selectId", id);
+		//System.out.println(uid);
+		
+		return sqlSession.selectOne("user.selectId", id);
+	}*/
+	
+	
+	//220131 아이디 중복체크 --실패2
+	/*public String selectId(UserVo uvo) {
+			
+		//String uid = sqlSession.selectOne("user.selectId", id);
+		//System.out.println(uid);
+			
+		return sqlSession.selectOne("user.selectId", uvo);
+	}*/
+		
+		
+	public UserVo selectId(UserVo uvo) {
+			
+		//String uid = sqlSession.selectOne("user.selectId", id);
+		//System.out.println(uid);
+			
+		return sqlSession.selectOne("user.selectId", uvo);
+	}	
 }

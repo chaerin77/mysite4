@@ -41,5 +41,33 @@
 			where no = #{no}
 		]]>
 	</update>
+	
+	<!-- 220131 아이디 중복체크 실패1-->
+	<!-- <select id="selectId" parameterType="String" resultType="String">
+		<![CDATA[
+			select id
+			from users
+			where id = #{id}	
+		]]>
+	</select>-->
+	
+	<!-- 220131 아이디 중복체크 실패2 -> null반환시 console.log(inputId) 안찍혀서 resultType바꿔볼예정-->
+	<!--  
+	<select id="selectId" parameterType="com.javaex.vo.UserVo" resultType="String">
+		<![CDATA[
+			select id
+			from users
+			where id = #{id}	
+		]]>
+	</select>-->	
+	
+	<select id="selectId" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select id
+			from users
+			where id = #{id}	
+		]]>
+	</select>
+	
 
 </mapper>

@@ -115,42 +115,99 @@
 <script type="text/javascript">
 	
 	
-	/*로딩된 후 요청
+	//로딩된 후 요청
 	$(window).load(function(){
 		
-		$.ajax({
-				//요청
-				url : "${pageContext.request.contextPath }/api/user/",
-				type : "post",
-				//contentType : "application/json",
-				//data : {name: ”홍길동"},
-				
-				//응답
-				dataType : "json",
-				success : function(result){
-					//성공시 처리해야될 코드 작성
-				},
-				error : function(XHR, status, error) {
-					console.error(status + " : " + error);
-				}
-		});
-		
-		
-	});*/
+	});
+	
 	
 	//중복체크 버튼이 클릭 될 때
 	$("#overcheck").on("click",function(){
 		console.log("클릭");
 		
 		//입력한 id
-		var id = $("input-uid").val();
+		var id = $("#input-uid").val();
+		console.log(id);
+		
+		var userVo = {
+				id: id				
+		};
+		console.log(userVo);
 	
+		
+		//1.
+		$.ajax({
+			//요청
+			url : "${pageContext.request.contextPath }/api/user/overCheck",
+			type : "post",
+			//contentType : "application/json",
+			data : userVo,
+			
+			//응답
+			dataType : "json",
+			success : function(inputId){ //여기 조건 설정이 문제인가
+				//성공시 처리해야될 코드 작성
+				console.log(inputId);
+				
+				if(inputId == null){
+					//사용 가능한 아이디 입니다 화면에 뜨도록
+					console.log("사용 가능한 아이디입니다.");
+					
+				}else{
+					//중복된 아이디 입니다. 화면에 뜨도록 + 입력한 값 지워지게
+					
+					console.log("중복된 아이디입니다.")
+					$("#input-uid").val("");
+					
+				}
+				
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
+		
+		/* 1.이 json관련 오류가 나서 다른방법써보기로 했으나 위에거나 이거나 똑같이 오류
+		$.ajax({
+			//요청
+			url : "${pageContext.request.contextPath }/api/user/overCheck",
+			type : "post",
+			//contentType : "application/json",
+			data : userVo,
+			
+			//응답
+			dataType : "json",
+			success : function(inputId){
+				//성공시 처리해야될 코드 작성
+				message(inputId);
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
+		
+		//중복체크 메시지
+		function message(id){
+			
+			if(inputId == null){
+				//사용 가능한 아이디 입니다 화면에 뜨도록
+				console.log("사용 가능한 아이디입니다.");
+					
+			}else{
+				//중복된 아이디 입니다. 화면에 뜨도록 + 입력한 값 지워지게
+				
+				console.log("중복된 아이디입니다.")
+				$("#input-uid").val("");
+			}
+		}*/
 	
 	
 	
 	});
-
-
 
 
 

@@ -36,4 +36,21 @@ public class UserService {
 		
 		userDao.update(userVo);
 	}
+	
+	//220131 아이디 중복체크--실패
+	/*public String overCheck(String id) {
+		
+		return userDao.selectId(id);
+	}*/
+	
+	//220131 아이디 중복체크 --실패2
+	/*public String overCheck(UserVo uvo) {
+			
+		return userDao.selectId(uvo);
+	}*/
+	
+	public UserVo overCheck(UserVo uvo) {
+		
+		return userDao.selectId(uvo);
+	}
 }
