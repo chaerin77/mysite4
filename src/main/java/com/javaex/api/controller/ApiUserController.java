@@ -23,7 +23,7 @@ public class ApiUserController {
 		return "/aGuestbook/joinForm";
 	}
 	
-	/* 실패1,2
+	//실패1,2
 	@ResponseBody
 	@RequestMapping("/overCheck")
 	public String overCheck(@ModelAttribute UserVo userVo) {
@@ -39,16 +39,23 @@ public class ApiUserController {
 		//입력폼에 입력한 아이디 -> id
 		//만약 id == db에 저장된 id라면..
 		
-		/*null이 반환되었을때 console.log(inputId)아예 안찍혀서 밑에 다른방법써보기로함
+		//null이 반환되었을때 console.log(inputId)아예 안찍혀서 밑에 다른방법써보기로함
 		String inputId = userService.overCheck(userVo);
 		System.out.println("쿼리문 실행 결과");
 		System.out.println(inputId);
 		
-		return inputId;
+		if(inputId==null) {
+			String t = "1";
+			return t;
+		}else {
+			String f = "0";
+			return f;
+		}
 		
-	}*/
+	}
 	
-	//vo로 바꾸든말든 오류는 같음 다른문제..
+	//vo로 바꾸든말든 오류는 같음 다른문제..3
+	/*
 	@ResponseBody
 	@RequestMapping("/overCheck")
 	public UserVo overCheck(@ModelAttribute UserVo userVo) {
@@ -61,7 +68,7 @@ public class ApiUserController {
 		System.out.println(uVo);
 		
 		return uVo;
-	}
+	}*/
 	
 	
 }

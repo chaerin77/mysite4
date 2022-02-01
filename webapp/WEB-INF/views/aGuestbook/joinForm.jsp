@@ -129,13 +129,14 @@
 		var id = $("#input-uid").val();
 		console.log(id);
 		
+		
 		var userVo = {
 				id: id				
 		};
 		console.log(userVo);
 	
 		
-		//1.
+		//220201 컨트롤러에 if조건 달고 public UserVo overCheck -> public String overCheck로 받게끔 바꿈 vo가 null일때 문제생김
 		$.ajax({
 			//요청
 			url : "${pageContext.request.contextPath }/api/user/overCheck",
@@ -145,21 +146,40 @@
 			
 			//응답
 			dataType : "json",
-			success : function(inputId){ //여기 조건 설정이 문제인가
+			success : function(inputIdresult){ 
 				//성공시 처리해야될 코드 작성
-				console.log(inputId);
+				console.log(inputIdresult);
 				
-				if(inputId == null){
+				if(inputIdresult == "1"){
 					//사용 가능한 아이디 입니다 화면에 뜨도록
 					console.log("사용 가능한 아이디입니다.");
 					
-				}else{
+				}else if(inputIdresult == "0"){
 					//중복된 아이디 입니다. 화면에 뜨도록 + 입력한 값 지워지게
 					
 					console.log("중복된 아이디입니다.")
 					$("#input-uid").val("");
-					
 				}
+			
+				
+			/*1.	3 실패
+			//응답
+			dataType : "json",
+			success : function(inputId){ //여기 조건 설정이 문제인가
+				//성공시 처리해야될 코드 작성
+				console.log(inputId);
+					
+				if(inputId == null){
+					//사용 가능한 아이디 입니다 화면에 뜨도록
+					console.log("사용 가능한 아이디입니다.");
+						
+				}else{
+					//중복된 아이디 입니다. 화면에 뜨도록 + 입력한 값 지워지게
+						
+					console.log("중복된 아이디입니다.")
+					$("#input-uid").val("");
+						
+				}	*/
 				
 				
 			},

@@ -44,13 +44,15 @@ public class UserService {
 	}*/
 	
 	//220131 아이디 중복체크 --실패2
-	/*public String overCheck(UserVo uvo) {
+	public String overCheck(UserVo uvo) {
 			
 		return userDao.selectId(uvo);
-	}*/
+	}
 	
+	//3
+	/*
 	public UserVo overCheck(UserVo uvo) {
 		
 		return userDao.selectId(uvo);
-	}
+	}*/
 }
