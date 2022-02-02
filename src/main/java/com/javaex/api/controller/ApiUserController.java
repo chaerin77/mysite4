@@ -1,7 +1,11 @@
 package com.javaex.api.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +28,7 @@ public class ApiUserController {
 	}
 	
 	//실패1,2
+	
 	@ResponseBody
 	@RequestMapping("/overCheck")
 	public String overCheck(@ModelAttribute UserVo userVo) {
@@ -40,17 +45,30 @@ public class ApiUserController {
 		//만약 id == db에 저장된 id라면..
 		
 		//null이 반환되었을때 console.log(inputId)아예 안찍혀서 밑에 다른방법써보기로함
+		
 		String inputId = userService.overCheck(userVo);
 		System.out.println("쿼리문 실행 결과");
 		System.out.println(inputId);
 		
+		
 		if(inputId==null) {
+			return "1";
+			
+		}else {
+			return "0";
+		}
+		
+		
+		/*
+		if(inputId==null) {
+			
 			String t = "1";
 			return t;
 		}else {
+			
 			String f = "0";
 			return f;
-		}
+		}*/
 		
 	}
 	
@@ -59,6 +77,7 @@ public class ApiUserController {
 	@ResponseBody
 	@RequestMapping("/overCheck")
 	public UserVo overCheck(@ModelAttribute UserVo userVo) {
+
 		System.out.println("ApiUserController.overCheck");
 		
 		System.out.println(userVo);
@@ -66,7 +85,7 @@ public class ApiUserController {
 		UserVo uVo = userService.overCheck(userVo);
 		System.out.println("쿼리문 실행 결과");
 		System.out.println(uVo);
-		
+
 		return uVo;
 	}*/
 	

@@ -129,7 +129,6 @@
 		var id = $("#input-uid").val();
 		console.log(id);
 		
-		
 		var userVo = {
 				id: id				
 		};
@@ -143,6 +142,7 @@
 			type : "post",
 			//contentType : "application/json",
 			data : userVo,
+			
 			
 			//응답
 			dataType : "json",
@@ -160,33 +160,37 @@
 					console.log("중복된 아이디입니다.")
 					$("#input-uid").val("");
 				}
-			
+			}
 				
-			/*1.	3 실패
+		});
+		
+			/*1.	/3 실패  
+			
 			//응답
-			dataType : "json",
+			dataType : "json", 
 			success : function(inputId){ //여기 조건 설정이 문제인가
 				//성공시 처리해야될 코드 작성
 				console.log(inputId);
+				console.log(inputId.id);
 					
-				if(inputId == null){
+				if(inputId.id == null){
 					//사용 가능한 아이디 입니다 화면에 뜨도록
-					console.log("사용 가능한 아이디입니다.");
-						
+					// console.log("사용 가능한 아이디입니다.");
 				}else{
 					//중복된 아이디 입니다. 화면에 뜨도록 + 입력한 값 지워지게
 						
-					console.log("중복된 아이디입니다.")
+					// console.log("중복된 아이디입니다.");
 					$("#input-uid").val("");
-						
-				}	*/
-				
+				}	
 				
 			},
 			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
+				console.log(XHR);
+				console.log(status);
+				console.log(error);
+				// console.error(status + " : " + error);
+			}*/
+		
 		
 		
 		/* 1.이 json관련 오류가 나서 다른방법써보기로 했으나 위에거나 이거나 똑같이 오류
@@ -224,8 +228,6 @@
 				$("#input-uid").val("");
 			}
 		}*/
-	
-	
 	
 	});
 
