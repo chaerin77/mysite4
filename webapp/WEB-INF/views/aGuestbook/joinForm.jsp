@@ -150,13 +150,16 @@
 				//성공시 처리해야될 코드 작성
 				console.log(inputIdresult);
 				
-				if(inputIdresult == "1"){
+				if(inputIdresult == "2"){
+					//아이디를 입력하지 않았을 경우
+					console.log("아이디를 입력해주세요");
+					
+				}else if(inputIdresult == "1"){
 					//사용 가능한 아이디 입니다 화면에 뜨도록
 					console.log("사용 가능한 아이디입니다.");
 					
-				}else if(inputIdresult == "0"){
+				}else {
 					//중복된 아이디 입니다. 화면에 뜨도록 + 입력한 값 지워지게
-					
 					console.log("중복된 아이디입니다.")
 					$("#input-uid").val("");
 				}

@@ -50,7 +50,14 @@ public class ApiUserController {
 		System.out.println("쿼리문 실행 결과");
 		System.out.println(inputId);
 		
+		//아무값도 입력하지 않았을 경우
+		String noId = userVo.getId();
 		
+		if(noId == "") {
+			return "2";
+		}
+		
+		//입력한 아이디 중복체크
 		if(inputId==null) {
 			return "1";
 			
