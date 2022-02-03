@@ -20,7 +20,7 @@ public class ApiUserController {
 	public String joinForm() {
 		System.out.println("ApiUserController.joinForm()");
 		
-		return "/aGuestbook/joinForm";
+		return "/aUser/joinForm";
 	}
 	
 	//실패1,2

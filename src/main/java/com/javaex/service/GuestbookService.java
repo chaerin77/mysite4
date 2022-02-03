@@ -47,4 +47,17 @@ public class GuestbookService {
 		
 		guestbookDao.deleteList(no, password);
 	}
+	
+	//220203 remove
+	public String remove(GuestbookVo guestbookVo) {
+		System.out.println("guestbookService/remove ajax");
+		
+		int count = guestbookDao.delete(guestbookVo);
+		
+		if(count>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
 }

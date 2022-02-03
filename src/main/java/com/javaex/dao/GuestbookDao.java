@@ -64,4 +64,11 @@ public class GuestbookDao {
 		return count;
 	}
 	
+	//220203 삭제
+	public int delete(GuestbookVo gvo) {
+		
+		int count = sqlSession.delete("guestbook.deletelist", gvo);
+		return count;
+	}
+	
 }

@@ -9,6 +9,8 @@
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script><!-- 220203추가 -->
+
 </head>
 
 <body>
@@ -44,7 +46,7 @@
 	
 				<div id="user">
 					<div id="joinForm">
-						<form action="${pageContext.request.contextPath}/user/join" method="get">
+						<!-- <form action="${pageContext.request.contextPath}/user/join" method="get">-->
 	
 							<!-- 아이디 -->
 							<div class="form-group">
@@ -106,5 +108,26 @@
 	<!-- //wrap -->
 
 </body>
+
+<script type="text/javascript">
+	$("#btn-submit").on("click", function(){
+		console.log("회원가입버튼 클릭");
+		
+		var id = $("#input-uid").val(); //사용자가 입력한 값 가져오기
+		var pw = $("#input-pass").val();
+		
+		if(id == ""){
+			alert("아이디를 입력해주세요");
+			return false; //stop 작업중지
+		}
+		if(pw == ""){
+			alert("비밀번호를 입력해주세요");
+			return false;
+		}
+	});
+
+
+</script>
+
 
 </html>

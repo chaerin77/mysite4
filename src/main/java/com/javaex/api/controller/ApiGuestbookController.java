@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -46,5 +47,26 @@ public class ApiGuestbookController {
 		System.out.println(gVo);
 		return gVo;
 				
+	}
+	
+	@ResponseBody
+	@RequestMapping("/write2") 
+	public GuestbookVo write2(@RequestBody GuestbookVo guestbookVo) { //요청문서의 body에 데이터가 들어있어서 그안의 데이터를 받아 json형식으로 처리
+		System.out.println("ApiGuestbookController.write2()");
+		System.out.println(guestbookVo);
+		return guestbookVo;
+	}
+	
+	
+	@ResponseBody //데이터 json형태로 body에 보내기
+	@RequestMapping("/remove")
+	public String remove(@ModelAttribute GuestbookVo guestbookVo) {
+		System.out.println("ApiGuestbookController.remove");
+		System.out.println(guestbookVo);
+		
+		String result = guestbookService.remove(guestbookVo);
+		//"success"   "fail"
+		System.out.println(result);
+		return result;
 	}
 }
