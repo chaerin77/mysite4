@@ -153,15 +153,18 @@
 				if(inputIdresult == "2"){
 					//아이디를 입력하지 않았을 경우
 					console.log("아이디를 입력해주세요");
+					alert("아이디를 입력해주세요")''
 					
 				}else if(inputIdresult == "1"){
 					//사용 가능한 아이디 입니다 화면에 뜨도록
 					console.log("사용 가능한 아이디입니다.");
+					alert("사용 가능한 아이디입니다.");
 					
 				}else {
 					//중복된 아이디 입니다. 화면에 뜨도록 + 입력한 값 지워지게
 					console.log("중복된 아이디입니다.")
 					$("#input-uid").val("");
+					alert("중복된 아이디입니다.")
 				}
 			}
 				
