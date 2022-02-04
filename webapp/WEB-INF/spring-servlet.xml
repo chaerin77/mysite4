@@ -43,5 +43,19 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-
+	
+	<!-- 220204 추가 멀티파트 리졸버 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 최대업로드 가능한 바이트크기 -->
+		<property name="maxUploadSize" value="52428800" />
+		<!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할수있는 최대 바이트 크기 -->
+		<property name="maxInMemorySize" value="52428800" />
+		<!-- defaultEncoding -->
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+	
+	<!-- 220204 **-별 두개면 안에폴더가 몇개로 갈라져도 상관없는 -->
+	<!-- url매핑-->
+	<mvc:resources mapping="/upload/**" location="file:D:/javaStudy/upload/" />
+	
 </beans>
