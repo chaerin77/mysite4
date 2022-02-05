@@ -9,6 +9,8 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaex.dao.FileDao;
+
 @Service
 public class FileService {
 
@@ -52,10 +54,31 @@ public class FileService {
 			e.printStackTrace();
 		}
 		
-		
-		//DB에 저장 -테이블만들기 과제
-		
 		return saveName;
 	}
+	
+	
+	//DB에 저장 -테이블만들기 과제
+	public void insertFile(MultipartFile file) {
+		String saveDir = "D:\\javaStudy\\upload";
+		
+		String orgName = file.getOriginalFilename();
+		
+		//확장자
+		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")); 
+		
+		//저장파일이름
+		String saveName = System.currentTimeMillis()+ UUID.randomUUID().toString() + exName; 
+		System.out.println(saveName);
+		
+		//파일패스생성- 실제 파일 위치(경로)
+		String filePath = saveDir + "\\" + saveName; 
+		
+		//파일 사이즈
+		long fileSize = file.getSize();
+		
+		//FileDao.insertFile();
+	}
+	
 	
 }
