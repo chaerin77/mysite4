@@ -59,7 +59,7 @@
 						<c:forEach items="${galleryList}" var="gList">
 							<li>
 								<div class="view" >
-									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${gList.saveName}">
+									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${gList.saveName}" data-savename="${pageContext.request.contextPath }/upload/${gList.saveName}">
 									<div class="imgWriter">작성자: <strong>${gList.name}</strong></div>
 								</div>
 							</li>
@@ -128,7 +128,7 @@
 				<div class="modal-body">
 					
 					<div class="formgroup" >
-						<img id="viewModelImg" src =""> <!-- ajax로 처리 : 이미지출력 위치-->
+						<img id="viewModelImg" src ="" > <!-- ajax로 처리 : 이미지출력 위치-->
 					</div>
 					
 					<div class="formgroup">
@@ -173,6 +173,12 @@
 		console.log("이미지 클릭");
 		
 		$("#viewModal").modal('show');
+		
+		var $this = $(this);
+		var file = $this.data("savename");
+		console.log(file);
+		
+		$("#viewModelImg").val(file);
 		/*
 		$.ajax({
 			//요청
