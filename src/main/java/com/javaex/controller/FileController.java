@@ -36,7 +36,6 @@ public class FileController {
 		*/
 		
 		String saveName = fileService.restore(file);
-		fileService.insertFile(file);
 		model.addAttribute("saveName", saveName);
 		
 		return "fileupload/result";

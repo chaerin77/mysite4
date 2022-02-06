@@ -9,5 +9,6 @@
 		<mapper resource="mybatis/mappers/guestbook.xml"></mapper>
 		<mapper resource="mybatis/mappers/board.xml"></mapper>
 		<mapper resource="mybatis/mappers/rboard.xml"></mapper>
+		<mapper resource="mybatis/mappers/gallery.xml"></mapper>
 	</mappers>
 </configuration> 
