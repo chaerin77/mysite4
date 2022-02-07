@@ -20,6 +20,42 @@
 		]]>
 	</select>
 	
+	<!-- 220207 리스트+페이징 -->
+	<select id="selectList2" parameterType="map" resultType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			select rt.rn,
+				   rt.no,
+			       rt.title,
+			       rt.content,
+			       rt.hit,
+			       rt.reg_date,
+			       rt.user_no,
+			       rt.name
+			from (select rownum rn,
+						 ot.no,
+			             ot.title,
+			             ot.content,
+			             ot.hit,
+			             ot.reg_date,
+			             ot.user_no,
+			             ot.name
+			      from (select b.no,
+			                   b.title,
+			                   b.content,
+			                   b.hit,
+			                   to_char(b.reg_date, 'yyyy-mm-dd hh:mi:ss') reg_date,
+			                   b.user_no,
+			                   u.name
+			            from board b, users u
+			            where b.user_no = u.no
+			            order by b.no desc
+			            )ot
+			      )rt
+			where rn >=#{startRnum}
+			and rn <=#{endRnum}
+		]]>
+	</select>
+	
 	<!-- 글쓰기 (글 추가하기) -->
 	<insert id="insert" parameterType="com.javaex.vo.BoardVo">
 		<![CDATA[
@@ -71,4 +107,13 @@
 		]]>
 	</update>
 	
+	
+	<!-- 220207 전체 글 카운트 -->
+	<select id="totalCnt" resultType = "int">
+		<![CDATA[
+			select count(*)
+			from board b, users u
+			where b.user_no = u.no
+		]]>
+	</select>
 </mapper>

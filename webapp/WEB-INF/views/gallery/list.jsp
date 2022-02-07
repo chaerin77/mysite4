@@ -59,7 +59,7 @@
 						<c:forEach items="${galleryList}" var="gList">
 							<li>
 								<div class="view" >
-									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${gList.saveName}" data-savename="${pageContext.request.contextPath }/upload/${gList.saveName}">
+									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${gList.saveName}">
 									<div class="imgWriter">작성자: <strong>${gList.name}</strong></div>
 								</div>
 							</li>
@@ -136,14 +136,14 @@
 					</div>
 					
 				</div>
-				<form method="" action="">
-					<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
-				</div>
-				
-				
-				</form>
+				<!-- <form method="" action=""> -->
+					<div id="detailModalFooter" class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<%-- <c:if test="${authUser.no == galleryList.user_no}"> --%>
+						<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
+						<%-- </c:if> --%>
+					</div>
+				<!-- </form> -->
 				
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -163,22 +163,28 @@
 		console.log("이미지 올리기 버튼 클릭")
 		$("#addModal").modal('show');
 		
-		//var content = $("[name='content']").val();
 		//var file = $("[name='selectFile']").val();
 	})
 	
 	
 	//이미지를 클릭했을 때
-	$("[class='imgItem']").on("click",function(){
+	$("img[class='imgItem']").on("click",function(){
 		console.log("이미지 클릭");
 		
+		var content = $("[name='content']").val();
+		console.log(content);
+		
 		$("#viewModal").modal('show');
-		
 		var $this = $(this);
-		var file = $this.data("savename");
-		console.log(file);
 		
-		$("#viewModelImg").val(file);
+		var file = $this.attr("src");
+		console.log(file);
+	    $("#viewModelImg").val(file);
+		
+		var content = $this.data("content");
+		console.log(content);
+		
+		
 		/*
 		$.ajax({
 			//요청

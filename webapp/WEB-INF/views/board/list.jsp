@@ -62,6 +62,7 @@
 									<th>관리</th>
 								</tr>
 							</thead>
+							<!--  
 							<c:forEach items="${bList}" var="blist">		
 								<tbody>
 									<tr>
@@ -75,22 +76,47 @@
 										</c:if>
 									</tr>
 								</tbody>
-							</c:forEach>	
+							</c:forEach> -->	
+							
+						    
+						   <!-- 220207 페이징 --> 
+							<c:forEach items="${requestScope.pMap.boardList}" var="blist">		
+								<tbody>
+									<tr>
+										<td>${blist.no}</td>
+										<td class="text-left"><a href="${pageContext.request.contextPath}/board/read?no=${blist.no}">${blist.title}</a></td>
+										<td>${blist.name}</td>
+										<td>${blist.hit}</td>
+										<td>${blist.reg_date}</td>
+										<c:if test="${blist.user_no == authUser.no}">
+											<td><a href="${pageContext.request.contextPath}/board/delete?no=${blist.no}">[삭제]</a></td>
+										</c:if>
+									</tr>
+								</tbody>
+							</c:forEach>
+							
 						</table>
 						<div id="paging">
 							<ul>
-								<li><a href="">◀</a></li>
-								<li><a href="">1</a></li>
-								<li><a href="">2</a></li>
-								<li><a href="">3</a></li>
-								<li><a href="">4</a></li>
-								<li class="active"><a href="">5</a></li>
-								<li><a href="">6</a></li>
-								<li><a href="">7</a></li>
-								<li><a href="">8</a></li>
-								<li><a href="">9</a></li>
-								<li><a href="">10</a></li>
-								<li><a href="">▶</a></li>
+								<!-- 220207 true면 보여주고 false면 보여주지 않게  -->
+								<c:if test="${requestScope.pMap.prev == true}">
+									<!-- 시작번호-1  6~10 -> 5 -->
+									<li><a href="${pageContext.request.contextPath}/board/list2?crtPage=${pMap.startPageBtnNo-1}">◀</a></li>
+								</c:if>
+								
+								<!-- 220207 foreach 3~5까지  1~6까지 등으로 돌리는법 step-한번돌때 숫자 몇씩 올라가는지-->
+								
+								<c:forEach begin="${requestScope.pMap.startPageBtnNo}" end="${pMap.endPageBtnNo}" step="1" var="page">
+									<!-- 220207 과제 현재페이지는 볼드처리하기 if문 -->
+									<li class="active"><a href="${pageContext.request.contextPath}/board/list2?crtPage=${page}">${page}</a></li>
+								</c:forEach>
+								
+								
+								<!-- 220207 서비스에서 계산한거 갖고와서 그릴지말지만 조건으로넣은것 -->
+								<c:if test="${requestScope.pMap.next == true}">
+									<!-- 끝번호+1  6~10 -> 11 -->
+									<li><a href="${pageContext.request.contextPath}/board/list2?crtPage=${pMap.endPageBtnNo+1}">▶</a></li>
+								</c:if>
 							</ul>
 							
 							

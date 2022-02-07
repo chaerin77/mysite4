@@ -48,4 +48,9 @@ public class GalleryController {
 		return "redirect:/gallery/list";
 	}
 	
+	//삭제하기
+	public String delete() {
+		
+		return "";
+	}
 }
